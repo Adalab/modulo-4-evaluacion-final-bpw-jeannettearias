@@ -11,12 +11,6 @@ const bookRouter = require('./routes/booksRoutes');
 
 
 // ------------------------------
-//VARIABLES CREATION
-// ------------------------------
-
-
-
-// ------------------------------
 // EXPRESS CONFIGURATION
 // ------------------------------
 
