@@ -1,4 +1,19 @@
+// ------------------------------
+//CONNECTION WITH MYSQL 
+// ------------------------------
+
 const getConnection = require('../db/db');
+
+
+// ------------------------------
+// ENDPOINTS API
+// ------------------------------
+
+// Books = {book_id:1, book_title:"", book_image:"", book_author:"", book_genres:"", book_year:""}
+// GET    /api/books                                            --> { info: {} results: [{}, {}] }
+// POST   /api/books/rating               <-- body={}           --> { success: true } or { success: false, error: 'there is no book related?' }
+// PUT   /api/books/rating                <-- body={}           --> { success: true } or { success: false, error: 'the ranking couldn't be updated' }
+// DELETE   /api/books/rating                                   --> { success: true } or { success: false, error: 'the ranking couldn't be deleted' }
 
 
 const getAllBooks = async (req, res) => {
@@ -10,7 +25,7 @@ const getAllBooks = async (req, res) => {
         return;
     }
 
-    let selectQuery = 'SELECT b.book_id, b.book_title, b.book_author, r.rating FROM books b INNER JOIN rating r WHERE b.book_id = r.books_book_id';
+    let selectQuery = 'SELECT b.book_id, b.book_title, b.book_author, AVG(r.rating) rating FROM books b LEFT JOIN rating r ON (b.book_id = r.books_book_id) group by b.book_id, b.book_title, b.book_author';
     const selectValues = [];
 
     const [results] = await conn.query(selectQuery, selectValues);
@@ -20,6 +35,10 @@ const getAllBooks = async (req, res) => {
     conn.close();
 
 }
+
+// ------------------------------
+// ENDPOINTS API - ADD BOOKS RANKING
+// ------------------------------
 
 const addRatingBook = async (req, res) => {
 
@@ -47,6 +66,10 @@ const addRatingBook = async (req, res) => {
     conn.close();
 }
 
+// ------------------------------
+// ENDPOINTS API - UPDATE BOOK RANKING
+// ------------------------------
+
 const updateBookRating = async (req, res) => {
 
     console.log(req.body);
@@ -58,7 +81,6 @@ const updateBookRating = async (req, res) => {
         return;
     }
 
-    // Preparo y ejecuto el UPDATE  -> results
 
     const [results] = await conn.execute(
         `UPDATE rating
@@ -69,7 +91,6 @@ const updateBookRating = async (req, res) => {
 
     console.log(results);
 
-    // Si ha afectado a 1 fila, devuelvo success: true
 
     if (results.affectedRows === 1) {
         res.status(200).json({
@@ -79,7 +100,6 @@ const updateBookRating = async (req, res) => {
         });
     }
     else {
-        // Si no, devuelvo success: false
 
         res.json({
             success: false
@@ -88,6 +108,10 @@ const updateBookRating = async (req, res) => {
 
     conn.close();
 }
+
+// ------------------------------
+// ENDPOINTS API - DELETE BOOKS RANKING
+// ------------------------------
 
 const deleteBookRating = async (req, res) => {
 

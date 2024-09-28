@@ -45,32 +45,6 @@ app.listen(port, () => {
     console.log(`server initiate in http://localhost:${port}`);
 });
 
-// ------------------------------
-//CONNECTION WITH MYSQL 
-// ------------------------------
-
-
-// ------------------------------
-// ENDPOINTS API
-// ------------------------------
-
-// Books = {book_id:1, book_title:"", book_image:"", book_author:"", book_genres:"", book_year:""}
-// GET    /api/books                                                    --> { info: {} results: [{}, {}] }
-// POST   /api/books/book_id/user_id               <-- body={}          --> { success: true } or { success: false, error: 'there is no book related?' }
-// PUT   /api/books/book_id/user_id/rating_id      <-- body={}          --> { success: true } or { success: false, error: 'the ranking couldn't be updated' }
-// DELETE   /api/books/book_id/user_id/rating_id                        --> { success: true } or { success: false, error: 'the ranking couldn't be deleted' }
-
-
-
-
-
-
-// ------------------------------
-// ENDPOINTS DYNAMIC PAGES
-// ------------------------------
-
-
-
 
 // ------------------------------
 //  STATICS SERVER FOR REACT
