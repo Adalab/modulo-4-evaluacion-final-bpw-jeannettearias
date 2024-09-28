@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Pride and prejudice",
+        "image": "/Users/jeannettearias/workspace/module_4/final_evaluation_module_4/modulo-4-evaluacion-final-bpw-jeannettearias/frontend/public/images/pride_and_prejudice_image.jpeg",
+        "author": "Jane Austen",
+        "ranking": 1,
+        "genres": "Drama"
+    },
+    {
+        "name": "Sense and Sensibility",
+        "image": "/Users/jeannettearias/workspace/module_4/final_evaluation_module_4/modulo-4-evaluacion-final-bpw-jeannettearias/frontend/public/images/sense_and_sensibility_image.jpeg",
+        "author": "Jane Austen",
+        "ranking": 2,
+        "genres": "Drama"
+    }
+]
