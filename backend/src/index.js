@@ -7,6 +7,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+const bookRouter = require('./routes/booksRoutes');
+
 
 // ------------------------------
 //VARIABLES CREATION
@@ -21,6 +23,7 @@ const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/books", bookRouter);
 
 const port = 4000;
 const data = require('./data/books.json');
@@ -46,13 +49,7 @@ app.listen(port, () => {
 //CONNECTION WITH MYSQL 
 // ------------------------------
 
-const conn = getConnection();
 
-if (!conn) {
-    res.status(500).json({ success: false, error: 'Conection error' });
-
-    return;
-}
 // ------------------------------
 // ENDPOINTS API
 // ------------------------------
@@ -64,27 +61,15 @@ if (!conn) {
 // DELETE   /api/books/book_id/user_id/rating_id                        --> { success: true } or { success: false, error: 'the ranking couldn't be deleted' }
 
 
-app.get('/books', async (req, res) => {
-    // Select 
-    console.log(req.query);
 
-    res.json(data);
 
-});
+
 
 // ------------------------------
 // ENDPOINTS DYNAMIC PAGES
 // ------------------------------
 
 
-app.post('/books', (req, res) => {
-    //INSERT --> req.body
-
-    console.log('ey! something is comming through POST');
-
-
-    res.json({ success: true });
-})
 
 
 // ------------------------------
