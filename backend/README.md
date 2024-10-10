@@ -51,14 +51,14 @@ module.exports = getConnection;
 
    Response:
    ```json
-[
-{
-"book_id": 1,
-"book_title": "Book Title 1",
-"book_author": "Author 1",
-"rating": 4.5
-}
-]
+   [
+   {
+   "book_id": 1,
+   "book_title": "Book Title 1",
+   "book_author": "Author 1",
+   "rating": 4.5
+   }
+   ]
    ```
 
 2. POST /api/books/rating
