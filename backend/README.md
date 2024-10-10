@@ -1,8 +1,9 @@
-Book Rating API
+# Book Rating API
 This project is a simple Node.js-based API that allows users to manage book ratings. The API is built using Express.js and connects to a MySQL database. The project structure allows users to create, read, update, and delete (CRUD) book ratings, as well as retrieve book data with their average ratings.
 
-#Project Structure
+## Project Structure
 
+```txt
 book-rating-api/
 ├── db/
 │ └── db.js # MySQL connection setup
@@ -17,10 +18,13 @@ book-rating-api/
 ├── index.js # Main server file
 ├── package.json # Project dependencies and scripts
 └── README.md # Project documentation
+```
 
-#Setup
+## Setup
 
 Set up your MySQL database and update the MySQL connection details in db/db.js:
+
+```js
 const mysql = require('mysql2/promise');
 
 const getConnection = async () => {
@@ -33,16 +37,20 @@ database: 'book_db',
 };
 
 module.exports = getConnection;
+```
 
-#API Endpoints
+## API Endpoints
 
 1. GET /api/books
    Retrieve all books along with their average ratings.
 
-Example Request:
-curl -X GET http://localhost:4000/api/books
+   Example Request:
+   ```bash
+   curl -X GET http://localhost:4000/api/books
+   ```
 
-Response:
+   Response:
+   ```json
 [
 {
 "book_id": 1,
@@ -51,6 +59,7 @@ Response:
 "rating": 4.5
 }
 ]
+   ```
 
 2. POST /api/books/rating
    Add a new rating for a book.
@@ -99,7 +108,7 @@ Example Response:
 "success": true
 }
 
-#Database Schema
+## Database Schema
 
 To use this API, you’ll need the following MySQL database structure:
 CREATE TABLE books (
@@ -119,7 +128,7 @@ rating INT,
 FOREIGN KEY (books_book_id) REFERENCES books(book_id)
 );
 
-#Usage
+## Usage
 To interact with the API, you can use tools like Postman or curl commands from the terminal.
 
 Here is an example curl command to retrieve all books:
